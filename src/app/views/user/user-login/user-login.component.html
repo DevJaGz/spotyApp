@@ -1,1 +1,86 @@
-<p>user-login works!</p>
+<div class="container-fluid bg-light ">
+  <div
+       class="container d-flex flex-column justify-content-center align-items-center"
+       style="min-height: 100vh;">
+
+    <div class="card border-secondary mb-3">
+      <h2 class="card-header text-center py-3">spotyApp</h2>
+      <div class="card-body">
+        <h5 class="card-title text-center">Login</h5>
+
+        <div class="container">
+
+          <div class="alert alert-danger opacity-75 d-flex align-items-center" role="alert" *ngIf="errorMessage !== ''">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+              <use xlink:href="#exclamation-triangle-fill" />
+            </svg>
+            <div>
+              {{errorMessage}}
+            </div>
+          </div>
+
+          <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="col-12 form-group">
+              <label for="emailId" class="form-label">Email</label>
+              <input
+                     formControlName="email"
+                     type="email" class="form-control mb-3" id="emailId">
+              <small
+                     *ngIf="controlIsValid('email')"
+                     class="text-danger">Debe ingresar una cuenta de correo válida.</small>
+            </div>
+
+            <div class="col-12 form-group">
+              <label for="passwordId" class="form-label">Contraseña</label>
+              <div class="input-group mb-3">
+                <input
+                       formControlName="password"
+                       [ngClass]="{'is-valid': false, 'is-invalid': false}"
+                       [type]=" (showPassword) ? 'text' : 'password'" class="form-control" id="passwordId">
+                <div
+                     (click)="showPassword = !showPassword"
+                     class="btn btn-secondary" type="button" id="button-addon2">
+                  <i [ngClass]="{'fa fa-eye-slash': showPassword, 'fa fa-eye': true}"></i>
+                </div>
+
+              </div>
+              <small
+                     *ngIf="controlIsValid('password')"
+                     class="text-danger">La contraseña es requerida y debe tener mínimo 6
+                caracteres.</small>
+            </div>
+
+            <div class="col-12">
+              <button [disabled]="isInRequest" class="btn btn-primary" type="submit">Ingresar</button>
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <div class="container">
+          <hr>
+          <p class="card-text text-center">Continuar con:</p>
+          <div class="d-flex flex-wrap justify-content-center">
+            <button
+
+                    (click)="loginGoogle()"
+                    type="button" class="btn btn-outline-dark m-1">Google</button>
+            <button type="button" class="btn btn-outline-primary m-1" [disabled]="true">Facebook</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<h5> Form</h5>
+<p>Values</p>
+<pre>{{loginForm.value | json}}</pre>
+<p>email Errors</p>
+<pre>{{loginForm.get('email')!.errors | json}}</pre>
+<p>password Errors</p>
+<pre>{{loginForm.get('email')!.errors | json}}</pre>

@@ -1,1 +1,25 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">spotyApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['clientes']">Clientes</a>
+        </li>
+      </ul>
+      <div>
+        <span class="text-dark">{{(user.nombre | titlecase) || user.email}}</span>
+        <span (click)="logout()" class="text-muted btn"> logout </span>
+      </div>
+      <form class="d-flex flex-wrap flex-md-nowrap">
+        <input class="form-control me-sm-2" type="text" placeholder="Buscar">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>
