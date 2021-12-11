@@ -58,20 +58,24 @@ export class UserLoginComponent implements OnInit {
     this.sendFormValues();
   }
 
-  sendFormValues(): void {
+  sendFormValues() {
     this.isInRequest = true;
     const { email, password } = this.loginForm.value;
+
     this._serviceAuth.loginEmailPass(email, password)
       .then((res) => {
         console.log(res);
         this.navigateTo('home')
       })
       .catch((error) => {
-        this.isInRequest = false;
-        this.errorMessage = "No fue posible autenticar el acceso con el email y la contraseña ingresados."
         console.log(error);
+        this.isInRequest = false;
+        this.errorMessage = `CODE: ${error.code} MESSAGE: ${error.message}`
       })
+
   }
+
+
 
   navigateTo(path: string): void {
     this.router.navigate([path])
