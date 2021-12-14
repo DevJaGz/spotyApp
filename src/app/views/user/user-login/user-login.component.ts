@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { HttpErrorResponse } from '@angular/common/http'
 
 
 
@@ -40,8 +40,9 @@ export class UserLoginComponent implements OnInit {
 
   loginGoogle(): void {
     this._serviceAuth.loginGoogle()
-      .then(() => {
-        this.navigateTo('home')
+      .then((res) => {
+        console.log(res);
+        this.saveSpotifyToken()
       })
       .catch((error) => {
         console.log(error);
@@ -65,7 +66,7 @@ export class UserLoginComponent implements OnInit {
     this._serviceAuth.loginEmailPass(email, password)
       .then((res) => {
         console.log(res);
-        this.navigateTo('home')
+        this.saveSpotifyToken()
       })
       .catch((error) => {
         console.log(error);
@@ -75,7 +76,31 @@ export class UserLoginComponent implements OnInit {
 
   }
 
+  saveSpotifyToken() {
+    this._serviceAuth.getSpotifyToken$().subscribe({
+      next: (res) => {
+        if (res && res.access_token && res.access_token !== "") {
+          this._serviceAuth.saveSessionStorage('token', res.access_token);
+          this.navigateTo('home')
+        } else {
+          this.errorInSpotifyToken()
+          this.errorMessage = `Lo sentimos, no se obtuvo el token por parte de spotity.`
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorInSpotifyToken()
+        this.errorMessage = `CODE: ${error.status} MESSAGE: ${error.message}`
+      },
+      complete: () => {
+        console.log("Completed saveSpotifyToken");
+      }
+    })
+  }
 
+  errorInSpotifyToken() {
+    this.isInRequest = false;
+    this._serviceAuth.logout();
+  }
 
   navigateTo(path: string): void {
     this.router.navigate([path])

@@ -17,13 +17,14 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this._serviceAuth.userInSession().then((user) => {
-      console.log(user);
-    }).catch((err) => {
-      console.log(err)
-      this._router.navigate(['user'])
-      return false
-    })
+
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      console.log('estas logueado');
+      this._router.navigate(['home']);
+      return false;
+    }
+
     return true;
   }
 

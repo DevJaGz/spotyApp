@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="col-12 form-group">
               <label for="emailId" class="form-label">Email</label>
               <input

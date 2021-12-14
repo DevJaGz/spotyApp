@@ -7,14 +7,14 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto pt-1">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['clientes']">Clientes</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['main']">Releases</a>
         </li>
       </ul>
       <div>
         <span class="text-dark">{{(user.nombre | titlecase) || user.email}}</span>
-        <span (click)="logout()" class="text-muted btn"> logout </span>
+        <span (click)="logout()" class="text-muted btn pe-4 ps-2 fs-6"> <i class="fas fa-sign-out-alt"></i></span>
       </div>
       <form class="d-flex flex-wrap flex-md-nowrap">
         <input class="form-control me-sm-2" type="text" placeholder="Buscar">

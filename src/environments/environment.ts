@@ -12,6 +12,12 @@ export const environment = {
     messagingSenderId: "17637852973",
     appId: "1:17637852973:web:b4c5d5911ad767434935a4",
     measurementId: "G-C61122FKBD"
+  },
+  spotify: {
+    grant_type: "client_credentials",
+    client_id: "f26865d22da44eaab2271f52cb0a3525",
+    client_secret: "e3d5d617a0ea4f168cfee61b46d0f693",
+    urlToken: "https://accounts.spotify.com/api/token"
   }
 };
 
