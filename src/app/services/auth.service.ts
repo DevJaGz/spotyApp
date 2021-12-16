@@ -17,7 +17,7 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, private _http: HttpClient) {
 
     afAuth.authState.subscribe(async (user) => {
-      console.log('estado del usuario', user);
+      // console.log('estado del usuario', user);
       if (!user) {
         return;
       }

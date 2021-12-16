@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http'
+import { AlertService } from 'src/app/services/alert.service';
+import { BlockUIService } from 'ng-block-ui';
 
 
 
@@ -16,8 +18,8 @@ export class UserLoginComponent implements OnInit {
 
   loginForm = new FormGroup({});
   showPassword = false;
-  isInRequest = false;
-  errorMessage = "";
+
+
 
   private emailPattern = /\S+@\S+\.\S+/;
 
@@ -25,7 +27,10 @@ export class UserLoginComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _serviceAuth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private _blockUIService: BlockUIService,
+    private _alertService: AlertService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this._fb.group({
@@ -39,18 +44,20 @@ export class UserLoginComponent implements OnInit {
   }
 
   loginGoogle(): void {
+    this._blockUIService.start('blockRef', 'Ingresando...')
     this._serviceAuth.loginGoogle()
       .then((res) => {
+        this._blockUIService.stop('blockRef')
         console.log(res);
         this.saveSpotifyToken()
       })
       .catch((error) => {
+        this._blockUIService.stop('blockRef')
         console.log(error);
       })
   }
 
   onSubmit(): void {
-    this.errorMessage = "";
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -60,36 +67,38 @@ export class UserLoginComponent implements OnInit {
   }
 
   sendFormValues() {
-    this.isInRequest = true;
     const { email, password } = this.loginForm.value;
-
+    this._blockUIService.start('blockRef', 'Ingresando...')
     this._serviceAuth.loginEmailPass(email, password)
       .then((res) => {
+        this._blockUIService.stop('blockRef')
         console.log(res);
         this.saveSpotifyToken()
       })
       .catch((error) => {
-        console.log(error);
-        this.isInRequest = false;
-        this.errorMessage = `CODE: ${error.code} MESSAGE: ${error.message}`
+        this._blockUIService.stop('blockRef')
+        this._alertService.error("SpotyApp", `El siguiente problema se presento al <b>ingresar</b>: <br><br> ${error.name} - ${error.code} <br><br> <b>Por favor comuníquese con el administrador</b>`)
+        // console.log(JSON.stringify(error, null, 2));
       })
 
   }
 
   saveSpotifyToken() {
+    this._blockUIService.start('blockRef', 'Obteniendo Token...')
     this._serviceAuth.getSpotifyToken$().subscribe({
       next: (res) => {
+        this._blockUIService.stop('blockRef')
         if (res && res.access_token && res.access_token !== "") {
           this._serviceAuth.saveSessionStorage('token', res.access_token);
           this.navigateTo('home')
         } else {
           this.errorInSpotifyToken()
-          this.errorMessage = `Lo sentimos, no se obtuvo el token por parte de spotity.`
         }
       },
-      error: (error: HttpErrorResponse) => {
+      error: ({ message }: HttpErrorResponse) => {
+        this._blockUIService.stop('blockRef')
+        this._alertService.error("SpotyApp", `El siguiente problema se presento al solicitar el <b>token</b>: <br><br> ${message} <br><br> <b>Por favor comuníquese con el administrador</b>`)
         this.errorInSpotifyToken()
-        this.errorMessage = `CODE: ${error.status} MESSAGE: ${error.message}`
       },
       complete: () => {
         console.log("Completed saveSpotifyToken");
@@ -98,7 +107,6 @@ export class UserLoginComponent implements OnInit {
   }
 
   errorInSpotifyToken() {
-    this.isInRequest = false;
     this._serviceAuth.logout();
   }
 

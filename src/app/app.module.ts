@@ -11,6 +11,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { BlockUIModule } from 'ng-block-ui';
+import { NoImagePipe } from './views/home/pipes/no-image.pipe';
+
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    BlockUIModule.forRoot()
   ],
   providers: [
     AuthGuard

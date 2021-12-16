@@ -1,0 +1,12 @@
+<div class="card m-2" style="width: 18rem; cursor:pointer" (click)="lookArtist()">
+  <div class="card-img">
+    <img class="card-img-top" [src]="song.images[0].url | noImage" alt="Card image cap">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ song.name | limitString:20}}</h5>
+    <div class="card-text">
+      <span *ngFor="let artist of song.artists"
+            class="badge rounded-pill bg-info  m-1">{{artist.name | limitString:10}}</span>
+    </div>
+  </div>
+</div>

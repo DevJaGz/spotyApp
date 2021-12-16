@@ -10,11 +10,19 @@ import { SpotifyService } from '../../services/spotify.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
 
+import { CardComponent } from './card/card.component';
+import { LimitStringPipe } from './pipes/limit-string.pipe';
+import { ArtistaComponent } from './artista/artista.component';
+import { NoImagePipe } from './pipes/no-image.pipe';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    MainComponent
+    MainComponent,
+    CardComponent,
+    LimitStringPipe,
+    NoImagePipe,
+    ArtistaComponent
   ],
   imports: [
     CommonModule,

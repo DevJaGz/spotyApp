@@ -1,1 +1,6 @@
-<p>main works!</p>
+<div
+     class="d-flex flex-wrap justify-content-center justify-content-md-start mt-2">
+   <app-card
+             *ngFor="let newSong of newSongs"
+             [song]="newSong"></app-card>
+</div>

@@ -2,3 +2,20 @@
 @import "~bootswatch/dist/cyborg/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/cyborg/bootswatch";
+
+
+.card {
+  // overflow: hidden;
+
+  .card-img {
+    overflow: hidden;
+  }
+
+  img {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover img {
+    transform: scale(1.07);
+  }
+}

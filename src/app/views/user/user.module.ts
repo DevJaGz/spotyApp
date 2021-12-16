@@ -24,7 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireAuthModule,
     ReactiveFormsModule,
     HttpClientModule
-  ],
-  providers: [AuthService]
+  ]
 })
 export class UserModule { }

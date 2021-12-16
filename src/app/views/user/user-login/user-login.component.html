@@ -10,15 +10,6 @@
 
         <div class="container">
 
-          <div class="alert alert-danger opacity-75 d-flex align-items-center" role="alert" *ngIf="errorMessage !== ''">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-              <use xlink:href="#exclamation-triangle-fill" />
-            </svg>
-            <div>
-              {{errorMessage}}
-            </div>
-          </div>
-
           <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="col-12 form-group">
               <label for="emailId" class="form-label">Email</label>
@@ -51,7 +42,7 @@
             </div>
 
             <div class="col-12">
-              <button [disabled]="isInRequest" class="btn btn-primary" type="submit">Ingresar</button>
+              <button class="btn btn-primary" type="submit">Ingresar</button>
             </div>
 
           </form>
