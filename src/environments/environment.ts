@@ -19,6 +19,10 @@ export const environment = {
     client_secret: "e3d5d617a0ea4f168cfee61b46d0f693",
     urlToken: "https://accounts.spotify.com/api/token",
     url: "https://api.spotify.com/v1/"
+  },
+  serpApi: {
+    key: "cb259f44a586e87f64209daa12e6fc494471c501adaf2c8cf6988f28ca621267",
+    url: "https://serpapi.com/search.json"
   }
 };
 

@@ -12,12 +12,11 @@ import { SpotifyService } from '../../../services/spotify.service';
 @Component({
   selector: 'app-artista',
   templateUrl: './artista.component.html',
-  styles: [
-  ]
+  styleUrls: ['./artista.component.scss']
 })
 export class ArtistaComponent implements OnInit {
 
-  artist: IArtist = {} as IArtist;
+  artist: IArtist | null = null;
   topTraks: ITopTrack[] = []
 
 

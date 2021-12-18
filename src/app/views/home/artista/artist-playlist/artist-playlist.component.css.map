@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "artist-playlist.component.scss"
+    ],
+    "names": [],
+    "file": "artist-playlist.component.css"
+}

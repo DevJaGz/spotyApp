@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   getSpotifyToken$(): Observable<{ access_token: string, token_type: string, expires_in: number }> {
-    let body = new URLSearchParams();
+    const body = new URLSearchParams();
     body.set('grant_type', environment.spotify.grant_type);
     body.set('client_id', environment.spotify.client_id);
     body.set('client_secret', environment.spotify.client_secret);

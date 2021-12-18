@@ -14,6 +14,8 @@ import { CardComponent } from './card/card.component';
 import { LimitStringPipe } from './pipes/limit-string.pipe';
 import { ArtistaComponent } from './artista/artista.component';
 import { NoImagePipe } from './pipes/no-image.pipe';
+import { InfoCardArtistComponent } from './artista/info-card-artist/info-card-artist.component';
+import { ArtistPlaylistComponent } from './artista/artist-playlist/artist-playlist.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NoImagePipe } from './pipes/no-image.pipe';
     CardComponent,
     LimitStringPipe,
     NoImagePipe,
-    ArtistaComponent
+    ArtistaComponent,
+    InfoCardArtistComponent,
+    ArtistPlaylistComponent
   ],
   imports: [
     CommonModule,

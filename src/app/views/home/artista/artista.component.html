@@ -1,1 +1,12 @@
-<p>artista works!</p>
+<div class="background"></div>
+<div class="background-shadow"></div>
+<div class=" ">
+  <div class="row" style="min-height: 100vh">
+    <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
+      <app-info-card-artist *ngIf="artist" [artist]="artist"></app-info-card-artist>
+    </div>
+    <div class="col-12 col-md-8 pt-5">
+      <app-artist-playlist></app-artist-playlist>
+    </div>
+  </div>
+</div>

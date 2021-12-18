@@ -1,0 +1,41 @@
+<div class="a-box">
+  <div class="img-container">
+    <div class="img-inner">
+      <div class="inner-skew">
+        <img
+             [src]="artist.images[0].url | noImage">
+      </div>
+    </div>
+  </div>
+  <div class="text-container">
+    <h3>{{artist.name}}</h3>
+    <div class="row ">
+      <div class="col-6 text-end">
+        <b>Seguidores</b>
+      </div>
+      <div class="col-6 text-start">
+        {{artist.followers.total}}
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-6 text-end">
+        <b>Popularidad</b>
+      </div>
+      <div class="col-6 text-start">
+        {{artist.popularity}}
+      </div>
+    </div>
+    <div class="row" *ngIf="artist.genres && artist.genres.length > 0">
+      <div class="col-12 my-2 ">
+        <b>Genero</b>
+      </div>
+      <div class="col-12 d-flex flex-wrap justify-content-center">
+        <div *ngFor="let gen of artist.genres">
+          <span class="badge rounded-pill px-3 py- m-1 bg-light text-dark">{{gen}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
