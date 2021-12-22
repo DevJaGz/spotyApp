@@ -2,11 +2,11 @@
 <div class="background-shadow"></div>
 <div class=" ">
   <div class="row" style="min-height: 100vh">
-    <div class="col-12 col-md-4 d-flex align-items-center justify-content-center">
+    <div class="col-12 pt-5 col-md-4 d-flex align-items-start justify-content-center">
       <app-info-card-artist *ngIf="artist" [artist]="artist"></app-info-card-artist>
     </div>
-    <div class="col-12 col-md-8 pt-5">
-      <app-artist-playlist></app-artist-playlist>
+    <div class="col-12 col-md-8 py-5">
+      <app-artist-playlist [tracks]="tracks"></app-artist-playlist>
     </div>
   </div>
 </div>

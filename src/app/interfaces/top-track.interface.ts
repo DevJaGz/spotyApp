@@ -1,8 +1,4 @@
-export interface ITopTrack {
-  tracks: Track[];
-}
-
-export interface Track {
+export interface ITrack {
   album: Album;
   artists: Artist[];
   disc_number: number;

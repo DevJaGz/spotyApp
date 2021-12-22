@@ -16,6 +16,8 @@ import { ArtistaComponent } from './artista/artista.component';
 import { NoImagePipe } from './pipes/no-image.pipe';
 import { InfoCardArtistComponent } from './artista/info-card-artist/info-card-artist.component';
 import { ArtistPlaylistComponent } from './artista/artist-playlist/artist-playlist.component';
+import { spotifyTrustResourcePipe } from './pipes/spotify-trust-resource.pipe';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ArtistPlaylistComponent } from './artista/artist-playlist/artist-playli
     CardComponent,
     LimitStringPipe,
     NoImagePipe,
+    spotifyTrustResourcePipe,
     ArtistaComponent,
     InfoCardArtistComponent,
     ArtistPlaylistComponent

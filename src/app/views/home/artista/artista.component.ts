@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BlockUIService } from 'ng-block-ui';
 import { IArtist } from 'src/app/interfaces/artist.interface';
-import { ITopTrack } from 'src/app/interfaces/top-track.interface';
+import { ITrack } from 'src/app/interfaces/top-track.interface';
 import { AlertService } from 'src/app/services/alert.service';
 import { SpotifyService } from '../../../services/spotify.service';
 
@@ -17,7 +17,7 @@ import { SpotifyService } from '../../../services/spotify.service';
 export class ArtistaComponent implements OnInit {
 
   artist: IArtist | null = null;
-  topTraks: ITopTrack[] = []
+  tracks: ITrack[] = [];
 
 
   constructor(
@@ -62,7 +62,7 @@ export class ArtistaComponent implements OnInit {
     this._spotifyService.getTopTracks$(id).subscribe({
       next: (res) => {
         this._blockUIService.stop("blockRef")
-        this.topTraks = res;
+        this.tracks = res;
         console.log(res);
         // console.log(JSON.stringify(res, null, 2));
       },

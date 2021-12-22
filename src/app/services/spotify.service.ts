@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IAlbum } from '../interfaces/album.interface';
 import { IArtist } from '../interfaces/artist.interface';
-import { ITopTrack } from '../interfaces/top-track.interface';
+import { ITrack } from '../interfaces/top-track.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,10 @@ export class SpotifyService {
     return this.getQuery$(`artists/${id}`)
   }
 
-  getTopTracks$(id: string, countryCode: string = 'us'): Observable<ITopTrack[]> {
+  getTopTracks$(id: string, countryCode: string = 'us'): Observable<ITrack[]> {
     return this.getQuery$(`artists/${id}/top-tracks?country=${countryCode}`)
+      .pipe(
+        map(topTrack => topTrack.tracks)
+      )
   }
 }
