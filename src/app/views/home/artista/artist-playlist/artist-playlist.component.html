@@ -1,12 +1,12 @@
 <ul class="list-group" style="opacity: 0.85;">
   <li class="list-group-item" *ngFor="let track of tracks">
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
-        <iframe [src]="track.uri | spotifyTrustResource" width="300" height="80" frameBorder="0"
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+      <div class="d-flex align-items-center p-2">
+        <iframe [src]="track.uri | spotifyTrustResource" width="100%" height="80" frameBorder="0"
                 allowtransparency="true"
                 allow="encrypted-media"> </iframe>
       </div>
-      <div class="d-flex">
+      <div class="d-flex p-2">
         <div class="me-5">
           <div>
             <b>Track N°</b> {{track.track_number}}
